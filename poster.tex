@@ -1,0 +1,58 @@
+%\documentclass[a4paper, 10pt, conference]{ieeeconf}      % for icra
+%\documentclass[10pt, a4paper]{IEEEtran}      % for ecmr
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage[ruled,lined]{algorithm2e}
+
+%\IEEEoverridecommandlockouts                              % This command is only
+%\overrideIEEEmargins
+
+
+\title{\LARGE \bf
+    Title of our awesome paper
+}
+
+\author{
+Barbora Kozl\'\i kova, Vojt\v{e}ch Von\'{a}sek, Martin Ma\v{n}\'{a}k
+}
+
+%Department of Cybernetics, Faculty of  Electrical Engineering\\ Czech Technical University in Prague
+%Technicka 2, 166 27, Prague 6, Czech Republic.
+
+\begin{document}
+
+%\maketitle
+\thispagestyle{empty}
+\pagestyle{empty}
+
+\begin{abstract}
+TODO
+\end{abstract}
+
+\section{Introduction}
+
+
+
+How the AWD are computed
+paper of MM \cite{manak2017hybrid}
+
+
+The ligand trajectories are computed using sampling-based motion planning originally studied in the field of robotics.
+The ligand is considered as a robot moving amongst obstacles defined by the atoms of the proteins.
+Since the ligand can translate, rotate and also change its dihedral angles, the planning leads to seach a in
+a high-dimensional configuration space.
+This space is searched using modified Rapidly Exploring Random Tree method~\cite{vonasek2017tunnel}.
+The algorithm builds a tree of collision-free configurations (each configuration describes the pose, translation and dihedral angles)
+rooted at the initial configuration.
+In each iteration, the method incrementally extends the tree by randomized sampling of space along the supplied tunnel.
+
+
+%\includegraphics[width=0.2\textwidth]{fig/graphisbt}  
+%\includegraphics[width=0.25\textwidth]{fig/graph3d} 
+
+\bibliographystyle{plain}
+\bibliography{poster}
+
+\end{document}
