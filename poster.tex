@@ -1,6 +1,5 @@
-%\documentclass[a4paper, 10pt, conference]{ieeeconf}      % for icra
-%\documentclass[10pt, a4paper]{IEEEtran}      % for ecmr
-\documentclass{article}
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
 \usepackage{graphicx}
 \usepackage{booktabs}
 \usepackage{amsmath}
@@ -10,9 +9,7 @@
 %\overrideIEEEmargins
 
 
-\title{\LARGE \bf
-    Title of our awesome paper
-}
+\title{Analysis traversability of  protein tunnels considering flexible ligands}
 
 \author{
 Barbora Kozl\'\i kova, Vojt\v{e}ch Von\'{a}sek, Martin Ma\v{n}\'{a}k
@@ -23,9 +20,7 @@ Barbora Kozl\'\i kova, Vojt\v{e}ch Von\'{a}sek, Martin Ma\v{n}\'{a}k
 
 \begin{document}
 
-%\maketitle
-\thispagestyle{empty}
-\pagestyle{empty}
+\maketitle
 
 \begin{abstract}
 TODO
@@ -38,16 +33,32 @@ TODO
 How the AWD are computed
 paper of MM \cite{manak2017hybrid}
 
+By searching paths in the constructed AWD, tunnels can be identified in the protein.
+These tunnels however describe possible pathways for single atom.
 
-The ligand trajectories are computed using sampling-based motion planning originally studied in the field of robotics.
-The ligand is considered as a robot moving amongst obstacles defined by the atoms of the proteins.
-Since the ligand can translate, rotate and also change its dihedral angles, the planning leads to seach a in
-a high-dimensional configuration space.
-This space is searched using modified Rapidly Exploring Random Tree method~\cite{vonasek2017tunnel}.
-The algorithm builds a tree of collision-free configurations (each configuration describes the pose, translation and dihedral angles)
-rooted at the initial configuration.
-In each iteration, the method incrementally extends the tree by randomized sampling of space along the supplied tunnel.
+To compute trajectories for non-spherical ligands, considering their shape and conformational changes, 
+motion planning techniques, originally studied in the field of robotics, are applied.
+The ligand is considered as a flexible robot moving among obstacles defined by the protein atoms.
+It is necessary to consider ligand translation, rotation and also additional degrees of freedom defined by the flexible dihedral angles.
+Finding of trajectories for such a system leads to a search in a high-dimensional configuration space, which can be efficiently
+solved using sampling-based planners~\cite{Lav06}.
 
+We utilize a modified Rapidly Exploring Random Tree Planner (RRT)~\cite{vonasek2017tunnel}, that builds
+a tree of collision-free configurations of the ligand (a configuration defines position, translation and internal DOFs of the ligand).
+Unlike classic RRT-based planners, that sample the space uniformly, we utilize the constructed AWD to sample the position
+of the ligands near the vertices of the AWD.
+This allows us to find trajectories along the tunnels and it is also faster than sampling the whole configuration space uniformly.
+In each iteration, a random sample is generated around a vertex of AWD and its nearest node in the tree is found.
+Then, the tree is expanded towards the random sample from the nearest node. 
+During the expansion, collision-detection between the ligand and the protein is checked and the tree is expanded only by the 
+collision-free nodes.
+The method terminates if the tree reaches the desired goal state, which is  defined e.g. as the position of the active site.
+
+The resulting trajectories are then evaluated using an energy function (using Vina Autodock tool~\cite{trott2009autodock}).
+
+
+..
+visualization
 
 %\includegraphics[width=0.2\textwidth]{fig/graphisbt}  
 %\includegraphics[width=0.25\textwidth]{fig/graph3d} 
