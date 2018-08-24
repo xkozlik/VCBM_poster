@@ -1,0 +1,32 @@
+\newcommand{\etalchar}[1]{$^{#1}$}
+\begin{thebibliography}{\uppercase{CFG{\etalchar{*}}12}}
+
+\bibitem[CFG{\etalchar{*}}12]{Cuskin2012}
+\textsc{Cuskin F., Flint J.~E., Gloster T.~M., Morland C., Basl{\'e} A.,
+  Henrissat B., Coutinho P.~M., Strazzulli A., Solovyova A.~S., Davies G.~J.,
+  Gilbert H.~J.}:
+\newblock How nature can exploit nonspecific catalytic and carbohydrate binding
+  modules to create enzymatic specificity.
+\newblock \emph{Proceedings of the National Academy of Sciences 109}, 51
+  (2012), 20889--20894.
+
+\bibitem[LaV06]{Lav06}
+\textsc{LaValle S.~M.}:
+\newblock \emph{Planning Algorithms}.
+\newblock Cambridge University Press, Cambridge, U.K., 2006.
+\newblock Available at http://planning.cs.uiuc.edu/.
+
+\bibitem[TO09]{trott2009autodock}
+\textsc{Trott O., Olson A.~J.}:
+\newblock Autodock vina: Improving the speed and accuracy of docking with a new
+  scoring function, efficient optimization, and multithreading.
+\newblock \emph{Journal of Computational Chemistry 31}, 2 (2009), 455--461.
+
+\bibitem[VK17]{vonasek2017tunnel}
+\textsc{Vonasek V., Kozlikova B.}:
+\newblock Tunnel detection in protein structures using sampling-based motion
+  planning.
+\newblock In \emph{2017 11th International Workshop on Robot Motion and Control
+  (RoMoCo)} (July 2017), pp.~185--192.
+
+\end{thebibliography}
