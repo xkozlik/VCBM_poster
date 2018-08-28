@@ -19,7 +19,7 @@
 % For Computer Graphics Forum: Please use the abbreviation of your first name.
 {\parbox{\textwidth}{\centering $^1$Masaryk University, Brno, Czech Republic\\
          $^2$Czech Technical University, Prague, Czech Republic\\
-        $^3$West Bohemian University, Pilsen, Czech Republic
+        $^3$University of West Bohemia, Pilsen, Czech Republic
 %             with different affiliations
        }
 }
