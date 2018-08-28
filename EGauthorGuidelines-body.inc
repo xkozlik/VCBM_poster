@@ -140,6 +140,38 @@ The resulting trajectories are then evaluated using an energy function (using Vi
 
 \section{Visualization}
 
+We demonstrate the proposed visual analysis of the ligand trajectories on a dataset consisting of 10,000 trajectories that screen binding of 1,2-dibromoethane (DBE) to the LinB86 protein. The trajectories were computed using 200 snapshots (? ns) from a larger MD (28,000 snapshots, ? ns) which was simulated without the ligand. Then, in each snapshot 50 trajectories were computed for the DBE using motion-planning. The trajectories were assigned with binding energies.
+
+In order to visualialize the results of the screening we focus on the binding energy profiles as they drive the biological relevancy of the trajectories. We plot the trajectories as energy profiles to a chart which depicts system's binding energy vs. ligand's distance to protein's binding site \textcolor{blue}{(TODO mention where it binds)}. We enable detailed exploration of the individual trajectories by clicking on a trajectory within the energies chart. In this manner, a respective ligand position along its trajectory within the repsective MD snapshot is visualized using a 3D view (see Figure~\ref{fig:energy}).
+
+\begin{figure}[htb]
+\centering
+\includegraphics[height=9em]{figures/energy}
+\hspace{1em}
+\includegraphics[height=9em]{figures/3d}
+\caption{TODO}
+\label{fig:energy}
+\end{figure}
+
+Note, the energy chart becomes crowded when plotting much less than 10,000 trajectories. Therefore, we enable aggregration of the energy profiles using a functional boxplot visualization~\cite{sun2011functional}. In this way, a representative (median) profile can be extracted as well as an overview of the whole profiles ensemble can conveyed by depicting particular data percentiles (see Figure~\ref{fig:fbplot}). Moreover, possible outlying profiles can be easily included into the visualization while keeping it clear.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[height=6.5em]{figures/energy-all}
+\hspace{1em}
+\includegraphics[height=6.5em]{figures/energy-fbplot}
+\caption{TODO}
+\label{fig:fbplot}
+\end{figure}
+
+\textcolor{blue}{TODO filtering}
+
+\textcolor{blue}{TODO figure}
+
+\section{Future Work}
+
+\textcolor{blue}{work for PacificVis}
+
 \section*{Acknowledgments}
 This work was supported by the project 17-07690S of the Czech Science Foundation.
 
