@@ -140,15 +140,15 @@ The resulting trajectories are then evaluated using an energy function (using Vi
 
 \section{Visualization}
 
-We demonstrate the proposed visual analysis of the ligand trajectories on a dataset consisting of 10,000 trajectories that screen binding of 1,2-dibromoethane (DBE) to the LinB86 protein (PDB ID 5LKA).
-The trajectories were computed using 200 snapshots (20 ns) from a longer MD (5,380 ns) which was simulated without the ligand.
+We describe and demonstrate the proposed visual analysis of the ligand trajectories on a dataset consisting of 10,000 trajectories that screen the binding of 1,2-dibromoethane (DBE) to the LinB86 protein (PDB ID 5LKA).
+The trajectories were computed using 200 snapshots (20 ns) from a longer molecular dynamics (MD) simulation (5,380 ns) which was performed without the ligand.
 Then, in each snapshot 50 trajectories were computed for the DBE using motion-planning.
-The trajectories were assigned with binding energies.
+The trajectories were assigned with the binding energies.
 
-In order to visualialize the results of the screening we focus on the binding energy profiles as they drive the biological relevancy of the trajectories.
-We plot the trajectories as energy profiles to a chart which depicts system's binding energy vs. ligand's distance to the a priori known protein's binding site (centroid of Asp108).
+In order to visualize the results of the screening, we focus on the binding energy profiles as they drive the biological relevance of the trajectories.
+We plot the trajectories as energy profiles to a chart, which depicts system's binding energy vs. the distance of the ligand to the a priori known protein binding site (centroid of Asp108).
 We enable detailed exploration of the individual trajectories by clicking on a trajectory within the energies chart.
-In this manner, a respective ligand position along its trajectory within the repsective MD snapshot is visualized using a 3D view (see Figure~\ref{fig:energy}).
+In this manner, a respective ligand position along its trajectory within a given MD snapshot is visualized using a 3D view (see Figure~\ref{fig:energy}).
 
 \begin{figure}[htb]
 \centering
@@ -159,10 +159,10 @@ In this manner, a respective ligand position along its trajectory within the rep
 \label{fig:energy}
 \end{figure}
 
-Note, the energy chart becomes easily crowded even when plotting much less than 10,000 trajectories.
-Therefore, we enable aggregration of the energy profiles using a functional boxplot visualization~\cite{sun2011functional}.
-In this way, a representative (median) profile can be extracted as well as an overview of the whole profiles ensemble can conveyed by depicting particular data percentiles (see Figure~\ref{fig:fbplot}).
-Moreover, possible outlying profiles can be easily included into the visualization while keeping it clear.
+Note, the energy chart becomes very dense even when plotting much less than 10,000 trajectories.
+Therefore, we enable the aggregration of the energy profiles using the functional boxplot visualization~\cite{sun2011functional}.
+In this way, a representative (median) profile can be extracted, as well as an overview of the whole profiles ensemble can be conveyed by depicting particular data percentiles (see Figure~\ref{fig:fbplot}).
+Moreover, possible outlying profiles can be easily included into the visualization while keeping it clear and comprehensible.
 
 \begin{figure}[htb]
 \centering
@@ -185,7 +185,7 @@ Furthermore, we enable to compare the user-defined selections by superimposing t
 \label{fig:superfbplot}
 \end{figure}
 
-\section{Future Work}
+\section{Conslusion and Future Work}
 
 We plan to extend our computation and visual analysis framework such that we will be able to cover whole MD simulation data (>50,000 snapshots).
 
