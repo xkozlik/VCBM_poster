@@ -3,15 +3,15 @@
 % D.Fellner, v2.02, Jan 25, 2017
 
 
-\title{Analysis the Traversability of Protein Tunnels by Flexible Ligands}
+\title{Visual Analysis the Traversability of Protein Tunnels by Flexible Ligands}
 
 % for anonymous conference submission please enter your SUBMISSION ID
 % instead of the author's name (and leave the affiliation blank) !!
 % for final version: please provide your *own* ORCID in the brackets following \orcid; see https://orcid.org/ for more details.
 \author[A. Jur\v{c}\'{i}k et al.]
-{\parbox{\textwidth}{\centering Adam Jur\v{c}\'{i}k$^{1}$
-        and Vojt\v{e}ch Von\'{a}sek$^{2}$
-				and Martin Ma\v{n}\'{a}k$^{3}$
+{\parbox{\textwidth}{\centering Adam Jur\v{c}\'{i}k$^{1}$,
+        Vojt\v{e}ch Von\'{a}sek$^{2}$,
+				Martin Ma\v{n}\'{a}k$^{3}$,
 				and Barbora Kozl\'{i}kov\'{a}$^{1}$
 %        S. Spencer$^2$\thanks{Chairman Siggraph Publications Board}
         }
@@ -46,8 +46,9 @@
 \maketitle
 %-------------------------------------------------------------------------
 \begin{abstract}
-TODO
-
+Analysis of accessibility of protein inner space by a ligand helps the biochemists to understand the protein structure and behavior and design desired chemical reactions.
+In our research, we develop methods for planning almost collision-avoiding paths for flexible ligands in dynamic protein models. 
+We join computational geometry concepts, path-planning approaches, and advanced visualization techniques to target this problem.
 \end{abstract}
 %-------------------------------------------------------------------------
 %  ACM CCS 1998
@@ -89,15 +90,26 @@ TODO
 %\end{abstract}  
 %-------------------------------------------------------------------------
 \section{Introduction}
-The van der Waals model of a protein is given by centers $\mathbf{c}_i \in R^3$ and radii $r_i \in R^+$ of individual atoms. 
+Chemical interactions between proteins and other molecules (ligands) take place in specific locations, called active sites, that are often deeply buried inside the protein structure.
+%These active sites are accessible through one or more void paths, called tunnels.
+We present the motion-planning based approach to the calculation of the transportation path for the ligand to the active site.
+The main benefit in comparison with the existing approaches is that we consider the flexibility of ligand, i.e., its conformational changes when traversing the protein.
+Our solution utilizes the additively weighted Voronoi diagrams for localizing the configuration space for the motion planner.
+The calculated trajectories have to be subsequently analyzed by the biochemists to assess their biochemical relevance.
+For this, we calculate the energy function of each trajectory and design a specific visualization techniques, helping to understand the trajectory properties.
+We demonstrate the usability of our approach on an exemplary dataset, obtained from our domain experts.
+
+
+\section{Our Approach}
+Our proposed solution utilizes the van der Waals model of a protein, which is given by centers $\mathbf{c}_i \in R^3$ and radii $r_i \in R^+$ of individual atoms. 
 An example with a ligand bound to the protein is depicted in Figure~\ref{fig:vd}. 
 Dynamic models add the movement of atoms by specifying positions in subsequent time-snapshots. 
-In our research, we develop methods for planning almost collision-avoiding paths for flexible ligands in dynamic protein models. 
-We join computational geometry concepts, path-planning approaches, and advanced visualization techniques to target this problem.
+																																 
+																																
 
-\section{Geometry}
+				  
 
-The additively weighted Voronoi diagram (AWD) is a collection of regions $V\!R_i$ assigned to the corresponding atoms.
+We utilize the additively weighted Voronoi diagram (AWD), which is a collection of regions $V\!R_i$ assigned to the corresponding atoms.
 \[V\!R_i = \{x \in \mathbf{R}^3 \,:\,|\mathbf{x}-\mathbf{c}_i|-r_i \leq |\mathbf{x}-\mathbf{c_j}|-r_j\,\forall j \in I_n \}\]
 Voronoi vertices and edges provide us a description of free space among atoms with respect to a spherical probe as it is depicted on a 2D analogy in Figure~\ref{fig:vd}. 
 Our program computes AWD for each time-snapshot of the dynamic model in a pre-processing phase and then offers this data to the motion-planning part. 
@@ -112,34 +124,36 @@ The rationale is that paths that are good for a single probe can also be good fo
 \label{fig:vd}
 \end{figure}
 
-\section{Path-planning}
+Path planning method launched on the constructed AWD can be used for identification of tunnels in proteins.
 
-By searching paths in the constructed AWD, tunnels can be identified in the protein.
-These tunnels however describe possible pathways for single atom.
+																					
+However, these tunnels describe possible pathways for a single atom, i.e, do not take into account the shape of more complex ligands.
 
-To compute trajectories for non-spherical ligands, considering their shape and conformational changes, 
-motion planning techniques, originally studied in the field of robotics, are applied.
-The ligand is considered as a flexible robot moving among obstacles defined by the protein atoms.
-It is necessary to consider ligand translation, rotation and also additional degrees of freedom defined by the flexible dihedral angles.
-Finding of trajectories for such a system leads to a search in a high-dimensional configuration space, which can be efficiently
-solved using sampling-based planners~\cite{Lav06}.
+To compute trajectories for non-spherical ligands, considering their shape and conformational changes, motion planning techniques, originally studied in the field of robotics, can be applied.
+																					 
+The ligand is considered as a flexible robot moving among the obstacles represented by protein atoms.
+To model ligand shape and flexibility, it is necessary to consider ligand translation, rotation, and also additional degrees of freedom (DOF) defined by the flexible dihedral angles.
+Finding of trajectories for such a system leads to a search in a high-dimensional configuration space, which can be efficiently solved using sampling-based planners~\cite{Lav06}.
+												  
 
-We utilize a modified Rapidly Exploring Random Tree Planner (RRT)~\cite{vonasek2017tunnel}, that builds
-a tree of collision-free configurations of the ligand (a configuration defines position, translation and internal DOFs of the ligand).
-Unlike classic RRT-based planners, that sample the space uniformly, we utilize the constructed AWD to sample the position
-of the ligands near the vertices of the AWD.
+																									   
+We utilize a modified Rapidly Exploring Random Tree Planner (RRT)~\cite{vonasek2017tunnel}, that builds a tree of collision-free configurations of the ligand (a configuration defines position, translation, and internal DOFs of the ligand).
+Unlike classic RRT-based planners, that sample the space uniformly, we utilize the constructed AWD to sample the position of the ligand only in the vicinity of the AWD vertices.
+											
 This allows us to find trajectories along the tunnels and it is also faster than sampling the whole configuration space uniformly.
 In each iteration, a random sample is generated around a vertex of AWD and its nearest node in the tree is found.
 Then, the tree is expanded towards the random sample from the nearest node. 
-During the expansion, collision-detection between the ligand and the protein is checked and the tree is expanded only by the 
-collision-free nodes.
-The method terminates if the tree reaches the desired goal state, which is  defined e.g. as the position of the active site.
+During the expansion, collision-detection between the ligand and the protein is checked and the tree is expanded only by the collision-free nodes.
+					 
+The method terminates if the tree reaches the desired goal state, which is defined, e.g., as the position of the active site.
 
-The resulting trajectories are then evaluated using an energy function (using Vina Autodock tool~\cite{trott2009autodock}).
+																														   
 
 
-\section{Visualization}
+The resulting trajectories are then evaluated using an energy function (using Vina Autodock tool~\cite{trott2009autodock}) and visualized, in order to help the biochemist to evaluate the relevance of the trajectories.
+For that, we propose a visual analysis tool, consisting of 2D and 3D views onto the trajectories and helping the user to filter out trajectories according to different properties, such as the ligand energy.
 
+%\section{Visualization}						
 We describe and demonstrate the proposed visual analysis of the ligand trajectories on a dataset consisting of 10,000 trajectories that screen the binding of 1,2-dibromoethane (DBE) to the LinB86 protein (PDB ID 5LKA).
 The trajectories were computed using 200 snapshots (20 ns) from a longer molecular dynamics (MD) simulation (5,380 ns) which was performed without the ligand.
 Then, in each snapshot 50 trajectories were computed for the DBE using motion-planning.
@@ -160,7 +174,7 @@ In this manner, a respective ligand position along its trajectory within a given
 \end{figure}
 
 Note, the energy chart becomes very dense even when plotting much less than 10,000 trajectories.
-Therefore, we enable the aggregration of the energy profiles using the functional boxplot visualization~\cite{sun2011functional}.
+Therefore, we enable the aggregation of the energy profiles using the functional boxplot visualization~\cite{sun2011functional}.
 In this way, a representative (median) profile can be extracted, as well as an overview of the whole profiles ensemble can be conveyed by depicting particular data percentiles (see Figure~\ref{fig:fbplot}).
 Moreover, possible outlying profiles can be easily included into the visualization while keeping it clear and comprehensible.
 
@@ -185,7 +199,7 @@ Furthermore, we enable to compare the user-defined selections by superimposing t
 \label{fig:superfbplot}
 \end{figure}
 
-\section{Conslusion and Future Work}
+\section{Conclusion and Future Work}
 
 We plan to extend our computation and visual analysis framework such that we will be able to cover whole MD simulation data (>50,000 snapshots).
 
