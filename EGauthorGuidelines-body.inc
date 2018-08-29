@@ -152,9 +152,11 @@ In this manner, a respective ligand position along its trajectory within a given
 
 \begin{figure}[htb]
 \centering
-\includegraphics[height=9em]{figures/energy}
-\hspace{1em}
-\includegraphics[height=9em]{figures/3d}
+%\includegraphics[height=9em]{figures/energy}
+%\hspace{1em}
+%\includegraphics[height=9em]{figures/3d}
+\includegraphics[height=10em]{figures/crop/energy}
+\includegraphics[height=10em]{figures/crop/3d}
 \caption{TODO caption, quality}
 \label{fig:energy}
 \end{figure}
@@ -166,9 +168,11 @@ Moreover, possible outlying profiles can be easily included into the visualizati
 
 \begin{figure}[htb]
 \centering
-\includegraphics[height=8em]{figures/energy-all}
-\hspace{0.75em}
-\includegraphics[height=8em]{figures/energy-fbplot}
+%\includegraphics[height=8em]{figures/energy-all}
+%\hspace{0.75em}
+%\includegraphics[height=8em]{figures/energy-fbplot}
+\includegraphics[height=9.5em]{figures/crop/energy-all}
+\includegraphics[height=9.5em]{figures/crop/energy-fbplot}
 \caption{TODO caption, font size, outliers boundary, quality}
 \label{fig:fbplot}
 \end{figure}
