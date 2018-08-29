@@ -166,9 +166,9 @@ Moreover, possible outlying profiles can be easily included into the visualizati
 
 \begin{figure}[htb]
 \centering
-\includegraphics[height=6.5em]{figures/energy-all}
-\hspace{1em}
-\includegraphics[height=6.5em]{figures/energy-fbplot}
+\includegraphics[height=8em]{figures/energy-all}
+\hspace{0.75em}
+\includegraphics[height=8em]{figures/energy-fbplot}
 \caption{TODO caption, font size, outliers boundary, quality}
 \label{fig:fbplot}
 \end{figure}
