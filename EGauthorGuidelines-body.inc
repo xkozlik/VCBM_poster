@@ -185,8 +185,8 @@ Furthermore, we enable to compare the user-defined selections by superimposing t
 \begin{figure}[htb]
 \centering
 \includegraphics[height=7.5em]{figures/scatterplots}
-%\hspace{0.75em}
-\includegraphics[height=7.5em]{figures/fbplots}
+\hspace{0.2em}
+\includegraphics[height=8em]{figures/fbplots}
 \caption{Two trajectory groups selected using scatterplot; Superimposed energy boxplots of the groups}
 \label{fig:superfbplot}
 \end{figure}
