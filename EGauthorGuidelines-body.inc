@@ -157,7 +157,7 @@ In this manner, a respective ligand position along its trajectory within a given
 %\includegraphics[height=9em]{figures/3d}
 \includegraphics[height=10em]{figures/crop/energy}
 \includegraphics[height=10em]{figures/crop/3d}
-\caption{TODO caption, quality}
+\caption{Trajectory energy chart; Ligand 3D visualization (point)}
 \label{fig:energy}
 \end{figure}
 
@@ -173,7 +173,7 @@ Moreover, possible outlying profiles can be easily included into the visualizati
 %\includegraphics[height=8em]{figures/energy-fbplot}
 \includegraphics[height=9.5em]{figures/crop/energy-all}
 \includegraphics[height=9.5em]{figures/crop/energy-fbplot}
-\caption{TODO caption, font size, outliers boundary, quality}
+\caption{Trajectory energy profiles; Boxplot of the profiles: median (black), 50. percentile (blue), outliers (gray circles)}
 \label{fig:fbplot}
 \end{figure}
 
@@ -184,8 +184,10 @@ Furthermore, we enable to compare the user-defined selections by superimposing t
 
 \begin{figure}[htb]
 \centering
-\includegraphics[height=9em]{figures/energy-fbplot}
-\caption{TODO caption}
+\includegraphics[height=7.5em]{figures/scatterplots}
+%\hspace{0.75em}
+\includegraphics[height=7.5em]{figures/fbplots}
+\caption{Two trajectory groups selected using scatterplot; Superimposed energy boxplots of the groups}
 \label{fig:superfbplot}
 \end{figure}
 
